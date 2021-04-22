@@ -64,6 +64,11 @@ class CasperRPCClient:
         response = self.send_request(request)
         return response
     
+    def state_get_auction_info(self):
+        request = Request('state_get_auction_info')
+        response = self.send_request(request)
+        return response
+
 if __name__ == '__main__':
     node_address = '104.131.104.36:40102'
     print(f"################# communicating with {node_address}")
@@ -86,3 +91,6 @@ if __name__ == '__main__':
     # print(f"################# calling /rpc/info_get_deploy")
     # print(my_casper_client.info_get_deploy("5c057122da06a44b54e41987f884ad2f8d1b71d5b2d41774aec68b674df043e5").ok)
     # print()
+    print(f"################# calling /rpc/state_get_auction_info")
+    print(my_casper_client.state_get_auction_info().ok)
+    print()
