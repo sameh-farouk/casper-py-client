@@ -35,8 +35,22 @@ class CasperRPCClient:
         response = self.send_request(request)
         return response
     
-    def chain_get_block(self, block_hash=None):
-        request = Request('chain_get_block', block_hash = block_hash)
+    def chain_get_block_latest(self):
+        request = Request('chain_get_block')
+        response = self.send_request(request)
+        return response
+
+    def chain_get_block_by_hash(self, block_hash=None):
+        request = Request('chain_get_block', block_identifier = {
+          'Hash': block_hash
+        })
+        response = self.send_request(request)
+        return response
+
+    def chain_get_block_by_height(self, block_height=None):
+        request = Request('chain_get_block', block_identifier = {
+          'Height': block_height
+        })
         response = self.send_request(request)
         return response
 
@@ -46,26 +60,29 @@ class CasperRPCClient:
         return response
     
     def info_get_deploy(self, deploy_hash=None):
-        request = Request('info_get_deploy', deploy_hash = deploy_hash)
+        request = Request('info_get_deploy', deploy_hash = deploy_hash) # need to test with real deploy hash
         response = self.send_request(request)
         return response
-
+    
 if __name__ == '__main__':
     node_address = '104.131.104.36:40102'
     print(f"################# communicating with {node_address}")
     my_casper_client = CasperRPCClient('104.131.104.36:40102')
-    print(f"################# calling /rpc/info_get_peers")
-    print(my_casper_client.info_get_peers().ok)
-    print()
-    print(f"################# calling /rpc/info_get_status")
-    print(my_casper_client.info_get_status().ok)
-    print()
-    print(f"################# calling /rpc/chain_get_block")
-    print(my_casper_client.chain_get_block().ok)
-    print()
-    print(f"################# calling /rpc/chain_get_block with a parameter")
-    print(my_casper_client.chain_get_block("5c057122da06a44b54e41987f884ad2f8d1b71d5b2d41774aec68b674df043e5").ok)
-    print()
-    print(f"################# calling /rpc/info_get_deploy")
-    print(my_casper_client.info_get_deploy("5c057122da06a44b54e41987f884ad2f8d1b71d5b2d41774aec68b674df043e5").ok)
-    print()
+    # print(f"################# calling /rpc/info_get_peers")
+    # print(my_casper_client.info_get_peers().ok)
+    # print()
+    # print(f"################# calling /rpc/info_get_status")
+    # print(my_casper_client.info_get_status().ok)
+    # print()
+    # print(f"################# calling /rpc/chain_get_block_latest")
+    # print(my_casper_client.chain_get_block_latest().ok)
+    # print()
+    # print(f"################# calling /rpc/chain_get_block_by_hash")
+    # print(my_casper_client.chain_get_block_by_hash(block_hash="c2c9dca3d275cda7801bb606abb3afe0da11afcade8b455239989278dbf09b0d").ok)
+    # print()
+    # print(f"################# calling /rpc/chain_get_block_by_height")
+    # print(my_casper_client.chain_get_block_by_height(block_height=58754).ok)
+    # print()
+    # print(f"################# calling /rpc/info_get_deploy")
+    # print(my_casper_client.info_get_deploy("5c057122da06a44b54e41987f884ad2f8d1b71d5b2d41774aec68b674df043e5").ok)
+    # print()
