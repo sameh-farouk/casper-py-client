@@ -38,14 +38,14 @@ class JsonRPCService:
         response = self.send_request(request)
         return response
 
-    def get_block_by_hash(self, block_hash=None):
+    def get_block_by_hash(self, block_hash):
         request = Request('chain_get_block', block_identifier = {
           'Hash': block_hash
         })
         response = self.send_request(request)
         return response
 
-    def get_block_by_height(self, block_height=None):
+    def get_block_by_height(self, block_height):
         request = Request('chain_get_block', block_identifier = {
           'Height': block_height
         })

@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "casper_py_client"
+version = "0.1.0"
+description = "The purpose of the client is to help users interact with the Casper block-chain"
+authors = ["Sameh Abouelsaad <samehabouelsaad@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+sseclient = "^0.0.27"
+jsonrpcclient = "^3.3.6"
+fire = "^0.4.0"
+
+[tool.poetry.dev-dependencies]
+poetry = "^1.1.6"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
